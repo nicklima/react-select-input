@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { darken, lighten } from "polished";
 
 export const Hidden = styled.input`
   opacity: 0;
@@ -86,7 +87,7 @@ export const Dropdown = styled.div`
   }
 
   &:after {
-    border-color: ${({ color }) => color || "#242424"} transparent;
+    border-color: ${({ bgColor }) => bgColor} transparent;
     border-style: solid;
     border-width: 0 6px 6px 6px;
     content: "";
@@ -110,6 +111,7 @@ export const List = styled.ul`
 
   &::-webkit-scrollbar-track {
     background: ${({ scrollTrack }) => scrollTrack};
+    border-radius: 20px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -118,20 +120,20 @@ export const List = styled.ul`
   }
 `;
 
+const darkColor = (alpha, color) => darken(alpha, color);
+const lightColor = (alpha, color) => lighten(alpha, color);
+
 export const Item = styled.li`
-  background: ${({ isActive }) => (isActive ? "#1e1e1e" : "")};
-  border-top: 1px solid #181414;
-  box-shadow: inset 0 1px 0 #2d2d2d;
+  background: ${({ isActive, bgColor }) =>
+    isActive ? darkColor(0.3, bgColor) : ""};
+  border-top: 1px solid ${({ bgColor }) => darkColor(0.5, bgColor)};
+  box-shadow: inset 0 1px 0 ${({ bgColor }) => lightColor(0.02, bgColor)};
   color: var(--white);
   display: flex;
   margin: 0 5px;
   padding: 12px;
   text-decoration: none;
   transition: all 0.3s ease-out;
-
-  & svg {
-    fill: var(--orange);
-  }
 
   &:first-child {
     border: 0;
@@ -148,6 +150,6 @@ export const Item = styled.li`
   }
 
   &:hover {
-    background: #1e1e1e;
+    background: ${({ bgColor }) => darkColor(0.3, bgColor)};
   }
 `;
