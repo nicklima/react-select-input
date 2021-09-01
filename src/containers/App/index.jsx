@@ -7,20 +7,28 @@ const App = () => (
     <GlobalStyle />
     <Main>
       <h2 style={{ color: "white", marginBottom: "20px" }}>Default</h2>
-      <SelectDropdown />
+      <SelectDropdown data={Array.from({ length: 4 })} />
       <h2 style={{ color: "white", marginBottom: "20px" }}>Transparent</h2>
       <SelectDropdown
-        settings={{ text: "white", arrow: "white", transparent: true }}
+        data={Array.from({ length: 8 })}
+        settings={{
+          textColor: "white",
+          arrowColor: "white",
+          transparent: true
+        }}
       />
       <h2 style={{ color: "white", marginBottom: "20px" }}>Solid Color</h2>
       <SelectDropdown
+        data={Array.from({ length: 10 })}
         settings={{
-          height: "200px",
-          input: "purple",
-          border: "gold",
-          text: "gold",
-          arrow: "gold",
-          scroll: "purple"
+          bgColor: "orange",
+          borderColor: "white",
+          height: "260px",
+          optColor: "black",
+          arrowColor: "white",
+          inputColor: "orange",
+          textColor: "white",
+          scrollColor: "black"
         }}
       />
     </Main>

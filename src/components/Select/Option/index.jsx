@@ -1,8 +1,12 @@
 import { Item } from "../styles";
 
-const Option = ({ handle, current, value }) => {
+const Option = ({ handle, current, value, bgColor }) => {
   return (
-    <Item isActive={current === value} onClick={() => handle(value)}>
+    <Item
+      bgColor={bgColor}
+      isActive={current === value}
+      onClick={() => handle(value)}
+    >
       <span>{value}</span>
     </Item>
   );

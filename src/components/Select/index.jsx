@@ -3,7 +3,7 @@ import { useState } from "react";
 import Option from "./Option";
 import { Hidden, Select, Value, Dropdown, List } from "./styles";
 
-const SelectDropdown = ({ settings }) => {
+const SelectDropdown = ({ data, settings }) => {
   const [choice, setChoice] = useState({
     isActive: false,
     value: "Select Option"
@@ -11,28 +11,27 @@ const SelectDropdown = ({ settings }) => {
   const { value, isActive } = choice;
 
   const theme = {
-    border: "#fff",
-    text: "#000",
+    arrowColor: "#000",
     bgColor: "#242424",
-    caret: "#ff0",
-    height: "240px",
-    input: "#fff",
-    transparent: false,
-    arrow: "#000",
-    scroll: "orange",
+    borderColor: "#fff",
+    height: "210px",
+    inputColor: "#fff",
+    scrollColor: "orange",
     scrollTrack: "#f5f5f5",
+    textColor: "#000",
+    transparent: false,
     ...settings
   };
 
   const {
-    arrow,
-    border,
+    arrowColor,
+    borderColor,
     bgColor,
     height,
-    input,
-    scroll,
+    inputColor,
+    scrollColor,
     scrollTrack,
-    text,
+    textColor,
     transparent
   } = theme;
 
@@ -51,27 +50,37 @@ const SelectDropdown = ({ settings }) => {
   };
 
   return (
-    <Select borderColor={border} inputColor={input} transparent={transparent}>
+    <Select
+      borderColor={borderColor}
+      inputColor={inputColor}
+      transparent={transparent}
+    >
       <Hidden
         tabindex="0"
         onFocus={() => showSelect()}
         onBlur={() => showSelect()}
       />
-      <Value color={text} arrow={arrow} onClick={() => showSelect()}>
+      <Value color={textColor} arrow={arrowColor} onClick={() => showSelect()}>
         {value}
       </Value>
       <Dropdown bgColor={bgColor} isActive={isActive}>
-        <List height={height} scrollColor={scroll} scrollTrack={scrollTrack}>
-          {Array.from({ length: 10 }).map((item, i) => {
-            return (
-              <Option
-                value={`Option ${i + 1}`}
-                current={value}
-                key={i}
-                handle={changeState}
-              />
-            );
-          })}
+        <List
+          height={height}
+          scrollColor={scrollColor}
+          scrollTrack={scrollTrack}
+        >
+          {data &&
+            data.map((item, i) => {
+              return (
+                <Option
+                  bgColor={bgColor}
+                  value={`Option ${i + 1}`}
+                  current={value}
+                  key={i}
+                  handle={changeState}
+                />
+              );
+            })}
         </List>
       </Dropdown>
     </Select>
