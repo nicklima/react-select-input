@@ -1,3 +1,6 @@
+// Selected Dropdown based on
+// https://tympanus.net/codrops/2012/10/04/custom-drop-down-list-styling
+
 import styled from "styled-components";
 import { darken, lighten } from "polished";
 
