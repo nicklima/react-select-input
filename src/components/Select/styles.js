@@ -69,7 +69,7 @@ export const Dropdown = styled.div`
   left: 0;
   list-style: none;
   opacity: ${({ isActive }) => (isActive ? "1" : "0")};
-  padding: 5px;
+  padding: 0px;
   position: absolute;
   pointer-events: ${({ isActive }) => (isActive ? "auto" : "none")};
   right: 0;
@@ -115,11 +115,13 @@ export const List = styled.ul`
   &::-webkit-scrollbar-track {
     background: ${({ scrollTrack }) => scrollTrack};
     border-radius: 20px;
+    margin: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: ${({ scrollColor }) => scrollColor};
     border-radius: 20px;
+    max-height: 50px;
   }
 `;
 
@@ -127,16 +129,15 @@ const darkColor = (alpha, color) => darken(alpha, color);
 const lightColor = (alpha, color) => lighten(alpha, color);
 
 export const Item = styled.li`
-  background: ${({ isActive, bgColor }) =>
-    isActive ? darkColor(0.3, bgColor) : ""};
   border-top: 1px solid ${({ bgColor }) => darkColor(0.5, bgColor)};
   box-shadow: inset 0 1px 0 ${({ bgColor }) => lightColor(0.02, bgColor)};
   color: var(--white);
   display: flex;
-  margin: 0 5px;
+  margin: 0;
   padding: 12px;
   text-decoration: none;
   transition: all 0.3s ease-out;
+  opacity: ${({ isActive }) => (isActive ? "1" : "0.7")};
 
   &:first-child {
     border: 0;
@@ -153,6 +154,6 @@ export const Item = styled.li`
   }
 
   &:hover {
-    background: ${({ bgColor }) => darkColor(0.3, bgColor)};
+    opacity: 1;
   }
 `;
